@@ -11,7 +11,7 @@ public class SearchingInArrays {
     public static void main(String[] args) {
         SearchingInArrays search = new SearchingInArrays();
         int[] unsortedArray = {10, 9, 19, 22, 4};
-        int index = search.binarySearch(unsortedArray, 10, 5);
+        int index = search.closestNumberToSearchKey(unsortedArray, 5, 99);
         System.out.println(index);
     }
 
@@ -37,4 +37,28 @@ public class SearchingInArrays {
         }
         return -1;
     }
+
+    int closestNumberToSearchKey(int[] array, int lengthOfArray, int searchKey) {
+        sorting.quickSort(array, 0, lengthOfArray - 1);
+
+        int ans = Integer.MIN_VALUE;
+        int left = 0;
+        int right = lengthOfArray - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (array[mid] == searchKey) {
+                return array[mid];
+            } else if (array[mid] < searchKey) {
+                ans = array[mid];
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return ans;
+    }
+
 }
