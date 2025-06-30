@@ -3,9 +3,12 @@ package org.dsa;
 public class SearchingInArrays {
 
     public Sorting sorting;
+    public BinaryOperations binaryOperations;
 
     public SearchingInArrays() {
         this.sorting = new Sorting();
+        this.binaryOperations = new BinaryOperations();
+
     }
 
     public static void main(String[] args) {
@@ -59,6 +62,32 @@ public class SearchingInArrays {
         }
 
         return ans;
+    }
+
+    int findSQRoot(int number){
+        int low = 1;
+        int high = number;
+        while (low <= high){
+            int mid = (low + high)/2;
+            if (mid * mid == number) return mid;
+            else if (mid * mid < number){
+                low = mid + 1;
+            }
+            else high = mid - 1;
+        }
+        return -1;
+    }
+
+    int findPthRoot(int number, int p){
+        int low = 1;
+        int high = number;
+        while (low <= high){
+            int mid = (low + high)/2;
+            if (binaryOperations.aPowBSolution2(mid,mid) == number) return mid;
+            else if (binaryOperations.aPowBSolution2(mid,mid) < number) low = mid + 1;
+            else high = mid - 1;
+        }
+        return -1;
     }
 
 }
